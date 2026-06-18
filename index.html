@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ALIT Web — Project Showcase</title>
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-dark: #111b33;
+    --navy-light: #243157;
+    --blue: #2563eb;
+    --blue-hover: #1d4ed8;
+    --gold: #e8a020;
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --border: #e2e6ee;
+    --text: #111827;
+    --text-muted: #6b7280;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 72px 0 64px;
+  }
+  .hero .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #93a8d4; margin-bottom: 14px;
+  }
+  .hero h1 { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .hero h1::before {
+    content: ""; display: block; width: 48px; height: 4px;
+    background: var(--blue); margin-bottom: 18px;
+  }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 640px; margin-bottom: 24px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge {
+    font-size: 13px; font-weight: 600; padding: 6px 12px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 4px; color: #dbe4f5;
+  }
+  .hero .regcodes { margin-top: 18px; font-size: 13px; color: #93a8d4; }
+
+  /* ── Section shell ── */
+  section.block { padding: 56px 0; }
+  section.block:nth-child(even) { background: var(--surface); }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 8px;
+  }
+  .section-title { font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
+
+  /* ── Cards ── */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--navy); padding: 20px;
+  }
+  section.block:nth-child(even) .card { background: var(--bg); }
+  .card h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--text-muted); }
+
+  /* ── Tech stack layers ── */
+  .layers { display: flex; flex-direction: column; gap: 12px; }
+  .layer {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 18px 20px; display: flex; align-items: center; gap: 18px;
+  }
+  section.block:nth-child(even) .layer { background: var(--bg); }
+  .layer__name {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--navy); width: 130px; flex-shrink: 0;
+  }
+  .layer__items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 13px; font-weight: 600; padding: 5px 12px;
+    background: #eef1f7; border: 1px solid #d0d9eb; color: var(--navy); border-radius: 4px;
+  }
+
+  /* ── Diagram container ── */
+  .diagram {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 28px; overflow-x: auto; text-align: center;
+  }
+  section.block:nth-child(even) .diagram { background: var(--bg); }
+  .caption { font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center; }
+
+  /* ── Site map tree ── */
+  .tree { background: var(--surface); border: 1px solid var(--border); padding: 24px; font-size: 14px; }
+  section.block:nth-child(even) .tree { background: var(--bg); }
+  .tree ul { list-style: none; padding-left: 20px; }
+  .tree > ul { padding-left: 0; }
+  .tree li { padding: 4px 0; color: var(--text); }
+  .tree .group { font-weight: 700; color: var(--navy); }
+  .tree code { font-family: monospace; font-size: 13px; color: var(--blue); }
+
+  /* ── Placeholder note ── */
+  .placeholder {
+    background: #fffbeb; border: 1px dashed var(--gold); padding: 20px;
+    font-size: 14px; color: #92400e;
+  }
+
+  /* ── Team ── */
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .member { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--blue); padding: 20px; }
+  section.block:nth-child(even) .member { background: var(--bg); }
+  .member h3 { font-size: 16px; color: var(--navy); margin-bottom: 4px; }
+  .member p { font-size: 13px; color: var(--text-muted); }
+
+  /* ── Footer ── */
+  footer { background: var(--navy); color: #93a8d4; padding: 32px 0; font-size: 13px; text-align: center; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 32px; }
+    .layer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .layer__name { width: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── Hero ── -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Project Showcase</div>
+      <h1>ALIT Web</h1>
+      <p>The public website and admin portal for the Australian Leading Institute of Technology — course catalogue, online enrolment, an LLN diagnostic assessment system, and a staff dashboard.</p>
+      <div class="badges">
+        <span class="badge">Next.js 16</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">Tailwind v4</span>
+        <span class="badge">Supabase</span>
+        <span class="badge">Vercel</span>
+        <span class="badge">pnpm</span>
+      </div>
+      <div class="regcodes">RTO 45156 &nbsp;·&nbsp; CRICOS 03981M &nbsp;·&nbsp; Melbourne, VIC</div>
+    </div>
+  </header>
+
+  <!-- ── What it is ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">What it is</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Public website</h3>
+          <p>Course catalogue, newsroom, prospectus and contact — the public face of ALIT.</p>
+        </div>
+        <div class="card">
+          <h3>Online enrolment</h3>
+          <p>A multi-step application form for domestic and international students.</p>
+        </div>
+        <div class="card">
+          <h3>LLN assessment</h3>
+          <p>A diagnostic Language, Literacy &amp; Numeracy tool that tailors learner support.</p>
+        </div>
+        <div class="card">
+          <h3>Admin dashboard</h3>
+          <p>Staff portal to manage applications, courses, users and LLN results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tech stack ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">At a glance</h2>
+      <div class="layers">
+        <div class="layer">
+          <div class="layer__name">Frontend</div>
+          <div class="layer__items">
+            <span class="chip">Next.js 16 (App Router)</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Tailwind v4</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer__name">Backend / Data</div>
+          <div class="layer__items">
+            <span class="chip">Supabase (Database)</span>
+            <span class="chip">Supabase (Auth)</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer__name">Hosting</div>
+          <div class="layer__items">
+            <span class="chip">Vercel</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer__name">Tooling</div>
+          <div class="layer__items">
+            <span class="chip">pnpm</span>
+            <span class="chip">Git / GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Architecture ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-title">How it connects</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TD
+    A[User's Browser] --> B[Next.js Frontend<br/>hosted on Vercel]
+    B --> C[Supabase<br/>Auth + Database]
+    C --> B
+    B --> D[Public pages:<br/>Courses, Newsroom, Prospectus]
+    B --> E[Enrolment + LLN Assessment]
+    B --> F[Admin Dashboard]
+    E --> C
+    F --> C
+        </pre>
+      </div>
+      <p class="caption">Visitors use the Next.js site; enrolments, assessments and admin actions read and write to Supabase.</p>
+    </div>
+  </section>
+
+  <!-- ── Site map ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Site Map</div>
+      <h2 class="section-title">Pages &amp; routes</h2>
+      <div class="tree">
+        <ul>
+          <li><span class="group">Public</span>
+            <ul>
+              <li>Home <code>/</code></li>
+              <li>Courses <code>/courses</code> → category → course detail</li>
+              <li>Contact <code>/contact</code></li>
+              <li>Apply <code>/apply</code></li>
+              <li>Newsroom <code>/newsroom</code></li>
+              <li>Prospectus <code>/prospectus</code></li>
+            </ul>
+          </li>
+          <li><span class="group">LLN Assessment</span>
+            <ul>
+              <li>Flow <code>/lln</code>: welcome → study area → course → confirm</li>
+              <li>Assessment <code>/lln/assessment</code>: learner details → quiz</li>
+              <li>Results <code>/lln/results</code></li>
+            </ul>
+          </li>
+          <li><span class="group">Admin Dashboard</span>
+            <ul>
+              <li>Overview <code>/dashboard</code></li>
+              <li>Applications <code>/dashboard/applications</code></li>
+              <li>Courses <code>/dashboard/courses</code></li>
+              <li>Users <code>/dashboard/users</code></li>
+              <li>LLN results <code>/dashboard/lln</code></li>
+            </ul>
+          </li>
+          <li><span class="group">Auth</span>
+            <ul><li>Login <code>/login</code></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LLN feature ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Feature Highlight</div>
+      <h2 class="section-title">The LLN Assessment System</h2>
+      <p style="color:var(--text-muted); margin-bottom:20px; max-width:680px;">
+        A diagnostic Language, Literacy &amp; Numeracy tool — <strong>not a pass/fail test</strong>.
+        It assesses learners across five domains and generates a profile that helps staff tailor support.
+      </p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart LR
+    W[Welcome] --> S1[Study Area]
+    S1 --> S2[Course]
+    S2 --> C[Confirm]
+    C --> D[Learner Details]
+    D --> Q[Quiz · 38 questions]
+    Q --> R[Results + PDF report]
+        </pre>
+      </div>
+      <p class="caption">Five domains assessed: Reading · Writing · Oral Communication · Numeracy · Digital Literacy</p>
+    </div>
+  </section>
+
+  <!-- ── Database schema (placeholder for Varun) ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Data Model</div>
+      <h2 class="section-title">Database schema</h2>
+      <div class="placeholder">
+        🚧 Placeholder — this section will hold the database ER diagram (Supabase tables and relationships).
+        To be built with Varun's database diagrams so it stays consistent with the backend.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Git workflow ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">Git workflow</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart LR
+    A[Branch off main] --> B[Commit changes]
+    B --> C[Push branch]
+    C --> D[Open Pull Request]
+    D --> E[Review by Sakif]
+    E --> F[Merge to main]
+        </pre>
+      </div>
+      <p class="caption">Everything goes through a branch and a pull request — no direct pushes to main.</p>
+    </div>
+  </section>
+
+  <!-- ── Team ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-label">Team</div>
+      <h2 class="section-title">Who does what</h2>
+      <div class="team">
+        <div class="member">
+          <h3>Sakif</h3>
+          <p>Repo owner · UI / styling · core developer</p>
+        </div>
+        <div class="member">
+          <h3>Hemant</h3>
+          <p>LLN system · functionality · responsiveness</p>
+        </div>
+        <div class="member">
+          <h3>Varun</h3>
+          <p>Backend · database · integration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    ALIT Education Group Pty. Ltd. · 500 Spencer St, West Melbourne VIC 3003 · RTO 45156 · CRICOS 03981M
+  </footer>
+
+  <!-- Mermaid for diagrams -->
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#1a2744",
+        primaryTextColor: "#ffffff",
+        primaryBorderColor: "#2563eb",
+        lineColor: "#2563eb",
+        fontFamily: "Source Sans 3, system-ui, sans-serif",
+      },
+    });
+  </script>
+
+</body>
+</html>
